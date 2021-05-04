@@ -12,7 +12,6 @@ client.on("ready", () => {
 
 client.on("message", (message) => {
     if (message.content.startsWith(">shortcut")) {
-        console.log(message.mentions.channels.first())
         if (message.mentions.channels.first()) {
             message.reply("**WARNING:**\nBrowsers will block the shortcut because internet shortcuts are commonly used for scams.", new MessageAttachment(Buffer.from(`[InternetShortcut]\r\nURL=discord://discordapp.com/channels/${message.guild.id}/${message.mentions.channels.first().id}\r\nIconFile=${message.guild.iconURL()}\r\nIconIndex=0`, "utf-8"), `${message.mentions.channels.first().name}.url`));
         } else {
