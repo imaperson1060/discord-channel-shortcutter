@@ -1,16 +1,21 @@
-﻿const { Client, MessageAttachment } = require("discord.js"),
+const { Client, MessageAttachment } = require("discord.js"),
       fs = require("fs"),
       client = new Client();
 
-client.login("token here");
+client.login(token);
 
 client.on("ready", () => {
 	client.user.setActivity("Shortcutter | >help", { type: "PLAYING" });
 });
 
 client.on("message", (message) => {
-	if (message.content == ">shortcut") {
-		message.reply("**WARNING:**\nBrowsers will block the shortcut because internet shortcuts are commonly used for scams.", new MessageAttachment(Buffer.from(`[InternetShortcut]\r\nURL=discord://discordapp.com/channels/${message.guild.id}/${message.channel.id}`, "utf-8"), `#${message.channel.name}.url`));
+	if (message.content.startsWith(">shortcut")) {
+        console.log(message.mentions.channels.first())
+        if (message.mentions.channels.first()) {
+            message.reply("**WARNING:**\nBrowsers will block the shortcut because internet shortcuts are commonly used for scams.", new MessageAttachment(Buffer.from(`[InternetShortcut]\r\nURL=discord://discordapp.com/channels/${message.guild.id}/${message.mentions.channels.first().id}\r\nIconFile=${message.guild.iconURL()}\r\nIconIndex=0`, "utf-8"), `${message.mentions.channels.first().name}.url`));
+        } else {
+			message.reply("**WARNING:**\nBrowsers will block the shortcut because internet shortcuts are commonly used for scams.", new MessageAttachment(Buffer.from(`[InternetShortcut]\r\nURL=discord://discordapp.com/channels/${message.guild.id}/${message.channel.id}\r\nIconFile=${message.guild.iconURL()}\r\nIconIndex=0`, "utf-8"), `${message.channel.name}.url`));
+        }
 	}
 
 	if (message.content == ">help") {
