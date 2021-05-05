@@ -35,6 +35,7 @@ namespace Discord_Channel_Shortcuts
         private void start_Click(object sender, EventArgs e)
         {
             MakeShortcut(Convert.ToInt64(Interaction.InputBox("Server ID:", "Shortcut Maker (1/3)", "", 100, 100)), Convert.ToInt64(Interaction.InputBox("Channel ID:", "Shortcut Maker (2/3)", "", 100, 100)), Convert.ToString(Interaction.InputBox("Shortcut Name:", "Shortcut Maker (3/3)", "", 100, 100)));
+            MessageBox.Show("Shortcut created on Desktop!");
             Close();
         }
 
