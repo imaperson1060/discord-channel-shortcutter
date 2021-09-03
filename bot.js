@@ -1,7 +1,7 @@
 const { Client, MessageAttachment } = require("discord.js"),
       client = new Client({ "intents": ["GUILDS", "GUILD_MESSAGES"] });
 
-client.login(token);
+client.login(process.env.SHORTCUTTERBOT);
 
 client.on("ready", () => {
 	client.user.setActivity("Shortcutter | >help", { type: "PLAYING" });
@@ -20,7 +20,7 @@ client.on("messageCreate", (message) => {
 
 	if (message.content == ">help") {
 		message.reply({
-			"embed": {
+			embeds: [{
 				"color": "#7289DA",
 				"author": {
 					"name": "Shortcutter",
@@ -39,7 +39,7 @@ client.on("messageCreate", (message) => {
 				"footer": {
 					"text": "© imaperson"
 				}
-			}
+			}]
 		});
 	}
 });
